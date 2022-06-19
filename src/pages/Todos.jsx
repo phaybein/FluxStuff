@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import TodoStore from '../stores/TodoStore';
+import Todo from '../components/Todo/Todo'
 
 export class Todos extends Component {
     constructor() {
