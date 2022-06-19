@@ -39,12 +39,23 @@ class TodoStore extends EventEmitter {
         this.emit("change");
     }
 
+    // CREATE TODO
+    receiveTodos(todos)
+    {
+        this.todos = todos;
+
+        this.emit("change");
+    }
+
     // HANDLE ALL ACTIONS
     handleActions(action)
     {
         switch (action.type) {
             case "CREATE_TODO":
                 this.createTodo(action.text);
+                break;
+            case "RECEIVE_TODOS":
+                this.receiveTodos(action.todos);
                 break;
         
             default:
