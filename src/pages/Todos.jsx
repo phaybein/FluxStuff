@@ -1,27 +1,17 @@
 import React, { Component } from 'react'
+import TodoStore from '../stores/TodoStore';
 
 export class Todos extends Component {
     constructor() {
         super();
         this.state = {
-            todos: [
-                {
-                    id: 234234,
-                    text: "Go Shopping",
-                    complete: false,
-                },
-                {
-                    id: 123,
-                    text: "Take out trash",
-                    complete: false,
-                },
-            ]
+            todos: TodoStore.getAll(),
         }
     }
   render() {
     const {todos} = this.state;
 
-    const TodoComponents = todo.map(todo => <Todo key={todo.id} {...todo} />)
+    const TodoComponents = todos.map(todo => <Todo key={todo.id} {...todo} />)
     return (
         <React.Fragment>
             <h1>Todos</h1>
