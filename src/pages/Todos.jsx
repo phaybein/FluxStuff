@@ -9,18 +9,31 @@ export class Todos extends Component {
             todos: TodoStore.getAll(),
         }
     }
+
+    componentDidMount() { 
+        TodoStore.on("change", () => {
+            this.setState(({
+                todos: TodoStore.getAll(), 
+            }));
+        });
+     }
+
+     componentWillUnmount() {
+
+      }
+
   render() {
     const {todos} = this.state;
 
     const TodoComponents = todos.map(todo => <Todo key={todo.id} {...todo} />)
     return (
-        <React.Fragment>
+        <div className="container">
             <h1>Todos</h1>
 
             <ul>
                 {TodoComponents}
             </ul>
-        </React.Fragment>
+        </div>
     )
   }
 }
