@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import TodoStore from '../stores/TodoStore';
-import Todo from '../components/Todo/Todo'
+import * as TodoActions from "../actions/TodoActions";
+import Todo from '../components/Todo/Todo';
 
 export class Todos extends Component {
     constructor() {
@@ -22,6 +23,14 @@ export class Todos extends Component {
 
       }
 
+      createTodo = () => {
+        TodoActions.createTodo(Date.now());
+      }
+
+      reloadTodos = () => {
+        TodoActions.reloadTodos();
+      }
+
   render() {
     const {todos} = this.state;
 
@@ -29,6 +38,16 @@ export class Todos extends Component {
     return (
         <div className="container">
             <h1>Todos</h1>
+
+            <div>
+                <button onClick={this.reloadTodos}>Reload</button>
+            </div>
+
+            <div>
+                <input />
+
+                <button onClick={this.createTodo}>Click</button>
+            </div>
 
             <ul>
                 {TodoComponents}
