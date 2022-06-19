@@ -12,15 +12,17 @@ export class Todos extends Component {
     }
 
     componentDidMount() { 
-        TodoStore.on("change", () => {
-            this.setState(({
-                todos: TodoStore.getAll(), 
-            }));
-        });
-     }
+        TodoStore.on("change", this.getTodos);
+    }
+    
+    componentWillUnmount() {
+         TodoStore.removeListener("change", this.getTodos);
+      }
 
-     componentWillUnmount() {
-
+      getTodos = () => {
+        this.setState(({
+            todos: TodoStore.getAll(), 
+        }));
       }
 
       createTodo = () => {
