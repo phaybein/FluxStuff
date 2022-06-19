@@ -3,7 +3,8 @@ import {EventEmitter} from 'events';
 // EXTEND EVENTS EMITTER
 class TodoStore extends EventEmitter {
     constructor() {
-        this.state = todos: [
+        super()
+        this.todos = [
             {
                 id: 234234,
                 text: "Go Shopping",
@@ -15,10 +16,10 @@ class TodoStore extends EventEmitter {
                 complete: false,
             },
         ]
+    }
 
-        getAll() {
-            return this.todos;
-        }
+    getAll() {
+        return this.todos;
     }
 }
 
